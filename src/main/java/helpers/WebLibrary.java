@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import sun.security.pkcs11.wrapper.Constants;
 
 import java.util.function.Function;
 
@@ -19,12 +20,9 @@ public class WebLibrary {
 
     public static boolean isElementPresent(WebElement element) throws Exception {
         try {
-            element.getText();
-        } catch (NoSuchElementException e) {
-            return false;
-
+            element.isDisplayed();
         } catch (Exception exception) {
-            throw new Exception("Unexpected exception. " + exception.getClass() + exception.getMessage());
+            throw new Exception("Element not found");
         }
         return true;
     }

@@ -23,10 +23,10 @@ public class LoginPage {
     @FindBy (xpath= "//*[@type='submit']")
     public WebElement submitButton;
 
+    @FindBy (css = "[class='field-validation-error alert alert-danger column']")
+    public WebElement errorAuthorizationMessege;
 
-
-
-
-
+    @FindBy (css = "[class = '_3ixn']")
+    public WebElement fail;
 
 }

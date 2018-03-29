@@ -31,5 +31,17 @@ public class GeneralPage {
     @FindBy (css = ".icon-media")
     public WebElement marketingLibraryButton;
 
+    @FindBy (css = ".icon-tool")
+    public WebElement supportButton;
+
+    @FindBy (css = ".icon-ribbon")
+    public WebElement academyButton;
+
+    @FindBy (css = ".icon-speak")
+    public WebElement contctButton;
+
+    @FindBy (css = ".icon-lock")
+    public WebElement loguotButton;
+
 
 }
