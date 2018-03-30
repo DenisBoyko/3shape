@@ -1,15 +1,15 @@
 package helpers;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import com.sun.deploy.cache.Cache;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import sun.security.pkcs11.wrapper.Constants;
 
+import java.io.File;
 import java.util.function.Function;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
@@ -43,9 +43,9 @@ public class WebLibrary {
 
     }
 
-    public static void waitIfElementClickable(int seconds, WebElement element, WebDriver driver) {
-        WebDriverWait waitIfElementClickable = new WebDriverWait(driver, seconds);
-        waitIfElementClickable.until(ExpectedConditions.elementToBeClickable(element));
+    public static void waitIfElementVisible(int seconds, WebElement element, WebDriver driver) {
+        new WebDriverWait(driver, seconds)
+                .until(ExpectedConditions.visibilityOf(element));
     }
 
 
@@ -55,17 +55,9 @@ public class WebLibrary {
     }
 
 
-    public static void waitFoo(WebDriver driver) {
-        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(50, SECONDS)
-                .pollingEvery(20, SECONDS)
-                .ignoring(NoSuchElementException.class);
-
-        WebElement foo = wait.until(new Function<WebDriver, WebElement>() {
-            public WebElement apply(WebDriver driver) {
-                return driver.findElement(By.cssSelector("[href='/en/product-releases']"));
-            }
-        });
-
+    public static void getscreenshot(WebDriver driver) throws Exception
+    {
+        File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile, new File("C:\\Users\\Denys.b\\Desktop\\ScreenShots\\screenshot.png"));
     }
 }

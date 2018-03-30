@@ -13,6 +13,9 @@ public class GeneralPage {
         PageFactory.initElements(driver,this);
     }
 
+    @FindBy (css = "h1.is-revealed")
+    public WebElement title;
+
     @FindBy (css = ".icon-home")
     public WebElement homeButton;
 

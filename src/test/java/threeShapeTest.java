@@ -4,14 +4,21 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.GeneralPage;
+import pages.ImplantStudio;
 import pages.LoginPage;
+import pages.SoftwareUpgrades;
+import pages.SofwareAndDocsPage;
 
 
 public class threeShapeTest {
     WebDriver driver;
+
     @Before
     public void beforeTest() {
         driver = new ChromeDriver();
@@ -35,22 +42,46 @@ public class threeShapeTest {
         loginPage.loginField.sendKeys(authorization.validLoginFullAccess);
         loginPage.passwordField.sendKeys(authorization.validPasswordFullAccess);
         loginPage.submitButton.click();
-
-        Thread.sleep(1000);
-        WebLibrary.isElementPresent(generalPage.softwareButton);
+        WebLibrary.isElementPresent(generalPage.productReleasesButton);
     }
 
     @Test
-    public void InValidLoginTest() throws Exception {
+    public void InValidLoginTest(){
         LoginPage loginPage = new LoginPage(driver);
         Authorization authorization = new Authorization();
 
         loginPage.loginField.sendKeys(authorization.InValidLoginFullAccess);
         loginPage.passwordField.sendKeys(authorization.InValidPassword);
         loginPage.submitButton.click();
-
-        Thread.sleep(3000);
         Assert.assertEquals("Username or password is not valid.",loginPage.errorAuthorizationMessege.getText());
+
+    }
+
+    @Test
+    public void latestVersionChek() throws Exception {
+        LoginPage loginPage = new LoginPage(driver);
+        GeneralPage generalPage = new GeneralPage(driver);
+        Authorization authorization = new Authorization();
+        SofwareAndDocsPage sofwareAndDocsPage = new SofwareAndDocsPage(driver);
+        ImplantStudio implantStudio = new ImplantStudio(driver);
+        SoftwareUpgrades softwareUpgrades = new SoftwareUpgrades(driver);
+
+        loginPage.loginField.sendKeys(authorization.validLoginFullAccess);
+        loginPage.passwordField.sendKeys(authorization.validPasswordFullAccess);
+        loginPage.submitButton.click();
+        WebLibrary.waitIfElementVisible(10,generalPage.title,driver);
+
+        generalPage.softwareButton.click();
+        WebLibrary.waitIfElementVisible(10,sofwareAndDocsPage.implamtStudioButton,driver);
+        sofwareAndDocsPage.implamtStudioButton.click();
+
+        WebLibrary.waitIfElementVisible(10,implantStudio.softwareUpgradeButton,driver);
+        implantStudio.softwareUpgradeButton.click();
+        Assert.assertEquals("2.17.1.4",softwareUpgrades.latestVersionImolantStudio.getText());
+
+
+
+
     }
 
 
@@ -66,7 +97,7 @@ public class threeShapeTest {
         loginPage.loginField.sendKeys(authorization.validLoginFullAccess);
         loginPage.passwordField.sendKeys(authorization.validPasswordFullAccess);
         loginPage.submitButton.click();
-        Thread.sleep(1000);
+        WebLibrary.waitIfElementVisible(10,generalPage.title,driver);
 
         WebLibrary.isElementPresent(generalPage.searchButton);
         WebLibrary.isElementPresent(generalPage.productReleasesButton);
