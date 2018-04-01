@@ -5,16 +5,15 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class SoftwareUpgrades {
-    WebDriver driver;
-
-    public SoftwareUpgrades(WebDriver driver){
+public class MainPage extends NavigationMenu {
+        public MainPage(WebDriver driver){
+        super(driver);
         this.driver = driver;
         PageFactory.initElements(driver,this);
     }
 
-    @FindBy (xpath= "//*[contains(@href,\"777bb000\")]//*[@class='u-text-bold']")
-    public WebElement latestVersionImolantStudio;
+    @FindBy (css = "h1.is-revealed")
+    public WebElement mainPageTitle;
 
 
 

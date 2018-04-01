@@ -37,8 +37,8 @@ public class WebLibrary {
     }
 
     public static void waitAndClick(int seconds, WebElement element, WebDriver driver) {
-        WebDriverWait wait = new WebDriverWait(driver, seconds);
-        wait.until(ExpectedConditions.elementToBeClickable(element));
+        new WebDriverWait(driver, seconds)
+                .until(ExpectedConditions.visibilityOf(element));
         element.click();
 
     }

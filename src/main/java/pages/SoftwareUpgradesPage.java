@@ -5,17 +5,15 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class SofwareAndDocsPage {
-    WebDriver driver;
-
-    public SofwareAndDocsPage(WebDriver driver){
+public class SoftwareUpgradesPage extends NavigationMenu {
+        public SoftwareUpgradesPage(WebDriver driver){
+        super(driver);
         this.driver = driver;
         PageFactory.initElements(driver,this);
     }
 
-    @FindBy (xpath = "//*[@href='/'][contains(text(),'Implant Studio ')]")
-    public WebElement implamtStudioButton;
-
+    @FindBy (xpath= "//*[contains(@href,\"777bb000\")]//*[@class='u-text-bold']")
+    public WebElement latestVersionImplantStudio;
 
 
 

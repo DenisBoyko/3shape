@@ -1,19 +1,12 @@
-import data.Authorization;
+import data.DataForTests3Shape;
 import helpers.WebLibrary;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import pages.GeneralPage;
-import pages.ImplantStudio;
-import pages.LoginPage;
-import pages.SoftwareUpgrades;
-import pages.SofwareAndDocsPage;
+import pages.*;
 
 
 public class threeShapeTest {
@@ -22,7 +15,7 @@ public class threeShapeTest {
     @Before
     public void beforeTest() {
         driver = new ChromeDriver();
-        driver.get("https://partner.3shape.com/en/login");
+        driver.get(DataForTests3Shape.url3Shape);
         driver.manage().window().maximize();
         WebLibrary.waitImplicitly(10,driver);
     }
@@ -36,54 +29,25 @@ public class threeShapeTest {
     @Test
     public void validLoginTest() throws Exception {
         LoginPage loginPage = new LoginPage(driver);
-        GeneralPage generalPage = new GeneralPage(driver);
-        Authorization authorization = new Authorization();
+        MainPage mainPage = new MainPage(driver);
+        DataForTests3Shape dataForTests3Shape = new DataForTests3Shape();
 
-        loginPage.loginField.sendKeys(authorization.validLoginFullAccess);
-        loginPage.passwordField.sendKeys(authorization.validPasswordFullAccess);
+        loginPage.loginField.sendKeys(dataForTests3Shape.validLoginFullAccess);
+        loginPage.passwordField.sendKeys(dataForTests3Shape.validPasswordFullAccess);
         loginPage.submitButton.click();
-        WebLibrary.isElementPresent(generalPage.productReleasesButton);
+        WebLibrary.isElementPresent(mainPage.productReleasesButton);
     }
 
     @Test
     public void InValidLoginTest(){
         LoginPage loginPage = new LoginPage(driver);
-        Authorization authorization = new Authorization();
+        DataForTests3Shape dataForTests3Shape = new DataForTests3Shape();
 
-        loginPage.loginField.sendKeys(authorization.InValidLoginFullAccess);
-        loginPage.passwordField.sendKeys(authorization.InValidPassword);
+        loginPage.loginField.sendKeys(dataForTests3Shape.InValidLoginFullAccess);
+        loginPage.passwordField.sendKeys(dataForTests3Shape.InValidPassword);
         loginPage.submitButton.click();
-        Assert.assertEquals("Username or password is not valid.",loginPage.errorAuthorizationMessege.getText());
-
+        Assert.assertEquals(dataForTests3Shape.errorAuthorizationMessege,loginPage.errorAuthorizationMessege.getText());
     }
-
-    @Test
-    public void latestVersionChek() throws Exception {
-        LoginPage loginPage = new LoginPage(driver);
-        GeneralPage generalPage = new GeneralPage(driver);
-        Authorization authorization = new Authorization();
-        SofwareAndDocsPage sofwareAndDocsPage = new SofwareAndDocsPage(driver);
-        ImplantStudio implantStudio = new ImplantStudio(driver);
-        SoftwareUpgrades softwareUpgrades = new SoftwareUpgrades(driver);
-
-        loginPage.loginField.sendKeys(authorization.validLoginFullAccess);
-        loginPage.passwordField.sendKeys(authorization.validPasswordFullAccess);
-        loginPage.submitButton.click();
-        WebLibrary.waitIfElementVisible(10,generalPage.title,driver);
-
-        generalPage.softwareButton.click();
-        WebLibrary.waitIfElementVisible(10,sofwareAndDocsPage.implamtStudioButton,driver);
-        sofwareAndDocsPage.implamtStudioButton.click();
-
-        WebLibrary.waitIfElementVisible(10,implantStudio.softwareUpgradeButton,driver);
-        implantStudio.softwareUpgradeButton.click();
-        Assert.assertEquals("2.17.1.4",softwareUpgrades.latestVersionImolantStudio.getText());
-
-
-
-
-    }
-
 
     @Test
     public void fullAccessPagesTest() throws Exception {
@@ -91,27 +55,80 @@ public class threeShapeTest {
         //All tabs should be available for this user
 
         LoginPage loginPage = new LoginPage(driver);
-        GeneralPage generalPage = new GeneralPage(driver);
-        Authorization authorization = new Authorization();
+        DataForTests3Shape dataForTests3Shape = new DataForTests3Shape();
+        MainPage mainPage = new MainPage(driver);
 
-        loginPage.loginField.sendKeys(authorization.validLoginFullAccess);
-        loginPage.passwordField.sendKeys(authorization.validPasswordFullAccess);
+        loginPage.loginField.sendKeys(dataForTests3Shape.validLoginFullAccess);
+        loginPage.passwordField.sendKeys(dataForTests3Shape.validPasswordFullAccess);
         loginPage.submitButton.click();
-        WebLibrary.waitIfElementVisible(10,generalPage.title,driver);
+        WebLibrary.waitIfElementVisible(10,mainPage.mainPageTitle,driver);
 
-        WebLibrary.isElementPresent(generalPage.searchButton);
-        WebLibrary.isElementPresent(generalPage.productReleasesButton);
-        WebLibrary.isElementPresent(generalPage.softwareButton);
-        WebLibrary.isElementPresent(generalPage.resellerToolBoxButton);
+        WebLibrary.isElementPresent(mainPage.searchButton);
+        WebLibrary.isElementPresent(mainPage.productReleasesButton);
+        WebLibrary.isElementPresent(mainPage.softwareButton);
+        WebLibrary.isElementPresent(mainPage.resellerToolBoxButton);
 
-        WebLibrary.isElementPresent(generalPage.marketingLibraryButton);
-        WebLibrary.isElementPresent(generalPage.supportButton);
-        WebLibrary.isElementPresent(generalPage.academyButton);
-        WebLibrary.isElementPresent(generalPage.contctButton);
-        WebLibrary.isElementPresent(generalPage.loguotButton);
+        WebLibrary.isElementPresent(mainPage.marketingLibraryButton);
+        WebLibrary.isElementPresent(mainPage.supportButton);
+        WebLibrary.isElementPresent(mainPage.academyButton);
+        WebLibrary.isElementPresent(mainPage.contactButton);
+        WebLibrary.isElementPresent(mainPage.loguotButton);
+    }
+
+    @Test
+    public void latestVersionChekTest() throws Exception {
+        LoginPage loginPage = new LoginPage(driver);
+        DataForTests3Shape dataForTests3Shape = new DataForTests3Shape();
+        SoftwareUpgradesPage softwareUpgradesPage = new SoftwareUpgradesPage(driver);
+        MainPage mainPage = new MainPage(driver);
+
+        loginPage.loginField.sendKeys(dataForTests3Shape.validLoginFullAccess);
+        loginPage.passwordField.sendKeys(dataForTests3Shape.validPasswordFullAccess);
+        loginPage.submitButton.click();
+        WebLibrary.waitIfElementVisible(10, mainPage.mainPageTitle,driver);
+
+        mainPage.softwareButton.click();
+        WebLibrary.waitIfElementVisible(10,mainPage.implantStudioButton,driver);
+        mainPage.implantStudioButton.click();
+
+        WebLibrary.waitIfElementVisible(10,mainPage.softwareUpgradeButton,driver);
+        mainPage.softwareUpgradeButton.click();
+        Assert.assertEquals(dataForTests3Shape.latestVersionImplantStudio, softwareUpgradesPage.latestVersionImplantStudio.getText());
+    }
+
+
+    @Test
+    public void imageBankFilterCheckTest() throws Exception {
+        LoginPage loginPage = new LoginPage(driver);
+        DataForTests3Shape dataForTests3Shape = new DataForTests3Shape();
+        MainPage mainPage = new MainPage(driver);
+        ImageBankPage imageBankPage = new ImageBankPage(driver);
+
+        loginPage.loginField.sendKeys(dataForTests3Shape.validLoginFullAccess);
+        loginPage.passwordField.sendKeys(dataForTests3Shape.validPasswordFullAccess);
+        loginPage.submitButton.click();
+        WebLibrary.waitIfElementVisible(10, mainPage.mainPageTitle,driver);
+
+        mainPage.marketingLibraryButton.click();
+        WebLibrary.waitIfElementVisible(10,mainPage.imageBankButton,driver);
+        mainPage.imageBankButton.click();
+        WebLibrary.waitIfElementVisible(10,imageBankPage.imageBunkTitle,driver);
+
+        imageBankPage.productFilter.click();
+        imageBankPage.scanBodiesCheckBox.click();
+        imageBankPage.applyButton.click();
+
+        Thread.sleep(5000);
+
+        imageBankPage.quantityOfElementsInDom(driver);
+        Assert.assertEquals(dataForTests3Shape.quntatyElementsinFilter,imageBankPage.quantityOfElementsInDom(driver));
+        Thread.sleep(5000);
+
 
 
     }
+
+
 
 
 }

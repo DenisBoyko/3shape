@@ -5,16 +5,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class GeneralPage {
+public class NavigationMenu {
     WebDriver driver;
 
-    public GeneralPage(WebDriver driver){
+    public NavigationMenu(WebDriver driver){
         this.driver = driver;
         PageFactory.initElements(driver,this);
     }
-
-    @FindBy (css = "h1.is-revealed")
-    public WebElement title;
 
     @FindBy (css = ".icon-home")
     public WebElement homeButton;
@@ -41,10 +38,19 @@ public class GeneralPage {
     public WebElement academyButton;
 
     @FindBy (css = ".icon-speak")
-    public WebElement contctButton;
+    public WebElement contactButton;
 
     @FindBy (css = ".icon-lock")
     public WebElement loguotButton;
+
+    @FindBy (xpath = "//*[@href='/'][contains(text(),'Implant Studio ')]")
+    public WebElement implantStudioButton;
+
+    @FindBy (css = "[href='/en/software-and-docs/implant-studio/software-upgrades']")
+    public WebElement softwareUpgradeButton;
+
+    @FindBy (css = "[href='/en/marketing-library/image-bank']")
+    public WebElement imageBankButton;
 
 
 }
