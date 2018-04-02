@@ -17,6 +17,10 @@ public class ImageBankPage extends NavigationMenu {
     @FindBy (xpath = "//*[contains(text(), 'Image bank')]")
     public WebElement imageBunkTitle;
 
+
+    @FindBy (xpath = "//*[@xmlns='http://www.w3.org/2000/svg']")
+    public WebElement filter;
+
     @FindBy (xpath = "//*[@class='c-filter__list-item'][1]")
     public WebElement productFilter;
 

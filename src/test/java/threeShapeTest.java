@@ -117,12 +117,11 @@ public class threeShapeTest {
         imageBankPage.productFilter.click();
         imageBankPage.scanBodiesCheckBox.click();
         imageBankPage.applyButton.click();
-
-        Thread.sleep(5000);
-
         imageBankPage.quantityOfElementsInDom(driver);
-        Assert.assertEquals(dataForTests3Shape.quntatyElementsinFilter,imageBankPage.quantityOfElementsInDom(driver));
+
         Thread.sleep(5000);
+        Assert.assertEquals(dataForTests3Shape.quntatyElementsinFilter,imageBankPage.quantityOfElementsInDom(driver));
+
 
 
 
