@@ -1,4 +1,5 @@
 import data.DataForTests3Shape;
+import helpers.LoginFormMethod;
 import helpers.WebLibrary;
 import org.junit.After;
 import org.junit.Assert;
@@ -23,30 +24,28 @@ public class threeShapeTest {
     @After
     public void afterTest() {
         driver.quit();
-    }
 
+    }
 
     @Test
     public void validLoginTest() throws Exception {
         LoginPage loginPage = new LoginPage(driver);
         MainPage mainPage = new MainPage(driver);
         DataForTests3Shape dataForTests3Shape = new DataForTests3Shape();
+        LoginFormMethod loginFormMethod = new LoginFormMethod(driver);
 
-        loginPage.loginField.sendKeys(dataForTests3Shape.validLoginFullAccess);
-        loginPage.passwordField.sendKeys(dataForTests3Shape.validPasswordFullAccess);
-        loginPage.submitButton.click();
-        WebLibrary.isElementPresent(mainPage.productReleasesButton);
+        loginFormMethod.loginValidDataLoginPage
+                (dataForTests3Shape.validLoginFullAccess,dataForTests3Shape.validPasswordFullAccess, driver);
     }
 
     @Test
-    public void InValidLoginTest(){
+    public void InValidLoginTest() throws Exception {
         LoginPage loginPage = new LoginPage(driver);
         DataForTests3Shape dataForTests3Shape = new DataForTests3Shape();
+        LoginFormMethod loginFormMethod = new LoginFormMethod(driver);
 
-        loginPage.loginField.sendKeys(dataForTests3Shape.InValidLoginFullAccess);
-        loginPage.passwordField.sendKeys(dataForTests3Shape.InValidPassword);
-        loginPage.submitButton.click();
-        Assert.assertEquals(dataForTests3Shape.errorAuthorizationMessege,loginPage.errorAuthorizationMessege.getText());
+        loginFormMethod.loginValidDataLoginPage
+                (dataForTests3Shape.InValidLoginFullAccess,dataForTests3Shape.InValidPassword, driver);
     }
 
     @Test
@@ -57,12 +56,11 @@ public class threeShapeTest {
         LoginPage loginPage = new LoginPage(driver);
         DataForTests3Shape dataForTests3Shape = new DataForTests3Shape();
         MainPage mainPage = new MainPage(driver);
-
-        loginPage.loginField.sendKeys(dataForTests3Shape.validLoginFullAccess);
-        loginPage.passwordField.sendKeys(dataForTests3Shape.validPasswordFullAccess);
-        loginPage.submitButton.click();
+        LoginFormMethod loginFormMethod = new LoginFormMethod(driver);
+//
+        loginFormMethod.loginValidDataLoginPage
+                (dataForTests3Shape.validLoginFullAccess,dataForTests3Shape.validPasswordFullAccess, driver);
         WebLibrary.waitIfElementVisible(10,mainPage.mainPageTitle,driver);
-
         WebLibrary.isElementPresent(mainPage.searchButton);
         WebLibrary.isElementPresent(mainPage.productReleasesButton);
         WebLibrary.isElementPresent(mainPage.softwareButton);
@@ -81,12 +79,11 @@ public class threeShapeTest {
         DataForTests3Shape dataForTests3Shape = new DataForTests3Shape();
         SoftwareUpgradesPage softwareUpgradesPage = new SoftwareUpgradesPage(driver);
         MainPage mainPage = new MainPage(driver);
+        LoginFormMethod loginFormMethod = new LoginFormMethod(driver);
 
-        loginPage.loginField.sendKeys(dataForTests3Shape.validLoginFullAccess);
-        loginPage.passwordField.sendKeys(dataForTests3Shape.validPasswordFullAccess);
-        loginPage.submitButton.click();
-        WebLibrary.waitIfElementVisible(10, mainPage.mainPageTitle,driver);
-
+        loginFormMethod.loginValidDataLoginPage
+                (dataForTests3Shape.validLoginFullAccess,dataForTests3Shape.validPasswordFullAccess, driver);
+        WebLibrary.waitIfElementVisible(10,mainPage.mainPageTitle,driver);
         mainPage.softwareButton.click();
         WebLibrary.waitIfElementVisible(10,mainPage.implantStudioButton,driver);
         mainPage.implantStudioButton.click();
@@ -103,7 +100,11 @@ public class threeShapeTest {
         DataForTests3Shape dataForTests3Shape = new DataForTests3Shape();
         MainPage mainPage = new MainPage(driver);
         ImageBankPage imageBankPage = new ImageBankPage(driver);
+        LoginFormMethod loginFormMethod = new LoginFormMethod(driver);
 
+        loginFormMethod.loginValidDataLoginPage
+                (dataForTests3Shape.validLoginFullAccess,dataForTests3Shape.validPasswordFullAccess,driver);
+        WebLibrary.waitIfElementVisible(10,mainPage.mainPageTitle,driver);
         loginPage.loginField.sendKeys(dataForTests3Shape.validLoginFullAccess);
         loginPage.passwordField.sendKeys(dataForTests3Shape.validPasswordFullAccess);
         loginPage.submitButton.click();
@@ -121,8 +122,6 @@ public class threeShapeTest {
 
         Thread.sleep(5000);
         Assert.assertEquals(dataForTests3Shape.quntatyElementsinFilter,imageBankPage.quantityOfElementsInDom(driver));
-
-
 
 
     }
