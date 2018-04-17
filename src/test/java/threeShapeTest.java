@@ -28,6 +28,8 @@ public class threeShapeTest {
 
     @Test
     public void validLoginTest() throws Exception {
+        // Validation login and transition to Main page
+
         LoginPage loginPage = new LoginPage(driver);
         MainPage mainPage = new MainPage(driver);
         DataForTests3Shape dataForTests3Shape = new DataForTests3Shape();
@@ -40,6 +42,8 @@ public class threeShapeTest {
 
     @Test
     public void InValidLoginTest(){
+        //Input Invalid login and passwor, user should see Error Massage
+
         LoginPage loginPage = new LoginPage(driver);
         DataForTests3Shape dataForTests3Shape = new DataForTests3Shape();
 
@@ -77,6 +81,8 @@ public class threeShapeTest {
 
     @Test
     public void latestVersionChekTest() throws Exception {
+        //Check that latest version of Implant Studio is 2.17.1.4 version.
+
         LoginPage loginPage = new LoginPage(driver);
         DataForTests3Shape dataForTests3Shape = new DataForTests3Shape();
         SoftwareUpgradesPage softwareUpgradesPage = new SoftwareUpgradesPage(driver);
@@ -85,8 +91,8 @@ public class threeShapeTest {
         loginPage.loginField.sendKeys(dataForTests3Shape.validLoginFullAccess);
         loginPage.passwordField.sendKeys(dataForTests3Shape.validPasswordFullAccess);
         loginPage.submitButton.click();
-        WebLibrary.waitIfElementVisible(10, mainPage.mainPageTitle,driver);
 
+        WebLibrary.waitIfElementVisible(10, mainPage.mainPageTitle,driver);
         mainPage.softwareButton.click();
         WebLibrary.waitIfElementVisible(10,mainPage.implantStudioButton,driver);
         mainPage.implantStudioButton.click();
@@ -99,6 +105,7 @@ public class threeShapeTest {
 
     @Test
     public void imageBankFilterCheckTest() throws Exception {
+        // Check that quantity of elements in page equals 13
         LoginPage loginPage = new LoginPage(driver);
         DataForTests3Shape dataForTests3Shape = new DataForTests3Shape();
         MainPage mainPage = new MainPage(driver);
@@ -120,7 +127,7 @@ public class threeShapeTest {
         imageBankPage.quantityOfElementsInDom(driver);
 
         Thread.sleep(5000);
-        Assert.assertEquals(dataForTests3Shape.quntatyElementsinFilter,imageBankPage.quantityOfElementsInDom(driver));
+        Assert.assertEquals(dataForTests3Shape.quantityElementsFilter,imageBankPage.quantityOfElementsInDom(driver));
 
 
 

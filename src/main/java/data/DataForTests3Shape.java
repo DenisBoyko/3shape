@@ -15,6 +15,6 @@ public class DataForTests3Shape {
 
     public String latestVersionImplantStudio = "2.17.1.4";
 
-    public int quntatyElementsinFilter = 13;
+    public int quantityElementsFilter = 13;
 
 }
