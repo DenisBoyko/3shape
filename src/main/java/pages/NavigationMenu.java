@@ -52,5 +52,14 @@ public class NavigationMenu {
     @FindBy (css = "[href='/en/marketing-library/image-bank']")
     public WebElement imageBankButton;
 
+    @FindBy (css = "[class='c-search-input__field']")
+    public WebElement searchField;
+
+    @FindBy (css = "[class='icon-close']")
+    public WebElement searchIconClose;
+
+
+
+
 
 }

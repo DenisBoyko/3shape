@@ -7,6 +7,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pages.LoginPage;
+import pages.MainPage;
 import sun.security.pkcs11.wrapper.Constants;
 
 import java.io.File;
@@ -60,4 +62,5 @@ public class WebLibrary {
         File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile, new File("C:\\Users\\Denys.b\\Desktop\\ScreenShots\\screenshot.png"));
     }
+
 }

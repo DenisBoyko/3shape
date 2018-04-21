@@ -6,15 +6,19 @@ package data;
 public class DataForTests3Shape {
     public static String url3Shape = "https://partner.3shape.com/en/login";
 
-    public String validLoginFullAccess = "3shape.partnerportal.dental.fullaccess";
-    public String validPasswordFullAccess = "123456";
-    public String errorAuthorizationMessege = "Username or password is not valid.";
+    public static String validLoginFullAccess = "3shape.partnerportal.dental.fullaccess";
+    public static String validPasswordFullAccess = "123456";
+    public static String errorAuthorizationMessege = "Username or password is not valid.";
 
-    public String InValidLoginFullAccess = "InValidLoginFullAccess";
-    public String InValidPassword = "000000";
+    public static String InValidLoginFullAccess = "InValidLoginFullAccess";
+    public static String InValidPassword = "000000";
 
-    public String latestVersionImplantStudio = "2.17.1.4";
 
-    public int quantityElementsFilter = 13;
+
+    public static String latestVersionImplantStudio = "2.17.1.4";
+
+    public static int quantityElementsFilter = 13;
+
+    public static String searchWord = "Dental";
 
 }
